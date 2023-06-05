@@ -30,8 +30,6 @@ const Formulario = () => {
                 temp: datos.main.temp,
                 humidity: datos.main.humidity
             })
-            console.log(datos)
-            setClima(datos);
         } catch (error) {
             
             console.log('error');
