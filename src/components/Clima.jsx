@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const Clima = ({clima}) => {
-
+    console.log(clima)
   return (
     <div>
       <Card style={{ width: "30em" }} className="mx-auto">

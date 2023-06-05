@@ -16,8 +16,8 @@ const Formulario = () => {
         try {
             const respuesta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ubicacion},${pais}&appid=1e20b7cdd06e771a348949d89d6ec268&units=metric`);
             const datos = await respuesta.json();
-            setClima(datos);
             console.log(datos)
+            setClima(datos);
         } catch (error) {
             Swal.fire('Lo siento la ubicación no fue encontrada')
             console.log('error');
