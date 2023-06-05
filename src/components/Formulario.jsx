@@ -1,6 +1,8 @@
 import { Button, Form } from "react-bootstrap";
 
 const Formulario = () => {
+
+    
     return (
         <Form className="my-4">
             <Form.Group className="mb-3" controlId="ubicacion">
@@ -14,8 +16,8 @@ const Formulario = () => {
             <div className="text-center">
                 <Button variant="primary">Consultar</Button>
             </div>
-            
         </Form>
+
     );
 };
 
