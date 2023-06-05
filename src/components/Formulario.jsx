@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import Swal from 'sweetalert2'
 import Clima from "./Clima";
 
 const Formulario = () => {
 
     const [clima, setClima] = useState([]);
 
+    
     useEffect(() =>{
         consultarAPI();
     },[]);
@@ -14,9 +16,10 @@ const Formulario = () => {
         try {
             const respuesta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ubicacion},${pais}&appid=1e20b7cdd06e771a348949d89d6ec268&units=metric`);
             const datos = await respuesta.json();
-            console.log(datos);
             setClima(datos);
+            console.log(datos)
         } catch (error) {
+            Swal.fire('Lo siento la ubicación no fue encontrada')
             console.log('error');
         }
     }
@@ -45,7 +48,7 @@ const Formulario = () => {
                     <Button variant="primary" type="submit">Consultar</Button>
                 </div>
             </Form>
-            <Clima clima ={clima}/>
+            <Clima clima={clima}/>
         </section>
     );
 };
