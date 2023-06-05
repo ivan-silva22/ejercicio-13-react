@@ -5,7 +5,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 const Clima = ({clima}) => {
   return (
     <div>
-      <Card style={{ width: "30em" }} className="mx-auto">
+      <Card style={{ width: "18rem" }} className="mx-auto">
         <ListGroup variant="flush">
           <ListGroup.Item>📍 Ubicacion: {clima.name} </ListGroup.Item>
           <ListGroup.Item>
