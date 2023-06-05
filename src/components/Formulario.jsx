@@ -1,37 +1,48 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import Swal from 'sweetalert2'
 import Clima from "./Clima";
 
 const Formulario = () => {
 
-    const [clima, setClima] = useState([]);
+    const [clima, setClima] = useState({
+        name:'',
+        country:'',
+        temp:'',
+        humidity:''
+    });
+    const [ciudad, setCiudad] = useState('');
+    const [pais, setPais] = useState('')
 
     
     useEffect(() =>{
-        consultarAPI();
-    },[]);
+        consultarAPI(ciudad,pais);
+    },[ciudad, pais]);
 
-    const consultarAPI = async (ubicacion="tucuman", pais="argentina") =>{
+    
+
+    const consultarAPI = async (ciudad, pais) =>{
         try {
-            const respuesta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ubicacion},${pais}&appid=1e20b7cdd06e771a348949d89d6ec268&units=metric`);
+            const respuesta = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad || 'tucuman'},${pais || 'argentina'}&appid=1e20b7cdd06e771a348949d89d6ec268&units=metric`);
             const datos = await respuesta.json();
+            setClima({
+                name: datos.name,
+                country: datos.sys.country,
+                temp: datos.main.temp,
+                humidity: datos.main.humidity
+            })
             console.log(datos)
             setClima(datos);
         } catch (error) {
-            Swal.fire('Lo siento la ubicación no fue encontrada')
+            
             console.log('error');
         }
     }
 
-    
-
     const handleSubmit = (e) =>{
         e.preventDefault();
-        let ubicacion = e.target.ubicacion.value;
-        let pais = e.target.pais.value;
-        return consultarAPI(ubicacion, pais);
-    } 
+        setCiudad(e.target.ubicacion.value);
+        setPais(e.target.pais.value);
+    }
     
     return (
         <section>
